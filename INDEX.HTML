@@ -1,0 +1,2109 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>JavaScript Academy — Curso Completo</title>
+
+<style>
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --bg: #080b12;
+    --panel: #101520;
+    --panel2: #151c29;
+    --text: #f4f7fb;
+    --muted: #9aa7b8;
+    --border: rgba(255,255,255,.08);
+    --primary: #f7df1e;
+    --primary-dark: #cdbb00;
+    --green: #22c55e;
+    --red: #ef4444;
+    --blue: #3b82f6;
+    --shadow: 0 20px 60px rgba(0,0,0,.35);
+}
+
+body.light {
+    --bg: #f3f5f8;
+    --panel: #ffffff;
+    --panel2: #eef1f5;
+    --text: #10141c;
+    --muted: #5f6b7a;
+    --border: rgba(0,0,0,.1);
+    --shadow: 0 20px 50px rgba(0,0,0,.1);
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Inter, Arial, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.6;
+    transition: .3s;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 30px;
+    background: rgba(8,11,18,.85);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+}
+
+body.light header {
+    background: rgba(255,255,255,.85);
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 800;
+    font-size: 19px;
+}
+
+.logo span {
+    width: 38px;
+    height: 38px;
+    display: grid;
+    place-items: center;
+    background: var(--primary);
+    color: #000;
+    border-radius: 9px;
+    font-weight: 900;
+}
+
+.header-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.icon-btn {
+    border: 1px solid var(--border);
+    background: var(--panel);
+    color: var(--text);
+    padding: 10px 13px;
+    border-radius: 9px;
+    cursor: pointer;
+    transition: .2s;
+}
+
+.icon-btn:hover {
+    transform: translateY(-2px);
+    border-color: var(--primary);
+}
+
+/* =========================
+   LAYOUT
+========================= */
+
+.layout {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    min-height: calc(100vh - 72px);
+}
+
+/* =========================
+   SIDEBAR
+========================= */
+
+.sidebar {
+    position: sticky;
+    top: 72px;
+    height: calc(100vh - 72px);
+    overflow-y: auto;
+    border-right: 1px solid var(--border);
+    background: var(--panel);
+    padding: 20px 14px;
+}
+
+.sidebar-title {
+    color: var(--muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 11px;
+    font-weight: 800;
+    margin: 15px 12px 8px;
+}
+
+.nav-item {
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 10px 12px;
+    border: 0;
+    background: transparent;
+    color: var(--muted);
+    border-radius: 8px;
+    cursor: pointer;
+    margin-bottom: 3px;
+    transition: .2s;
+}
+
+.nav-item:hover,
+.nav-item.active {
+    background: var(--panel2);
+    color: var(--text);
+}
+
+.nav-item.active {
+    border-left: 3px solid var(--primary);
+}
+
+/* =========================
+   CONTENT
+========================= */
+
+.content {
+    width: min(1100px, 100%);
+    margin: auto;
+    padding: 45px 30px 100px;
+}
+
+.hero {
+    padding: 45px;
+    border: 1px solid var(--border);
+    background:
+        radial-gradient(circle at 80% 20%, rgba(247,223,30,.12), transparent 30%),
+        var(--panel);
+    border-radius: 22px;
+    box-shadow: var(--shadow);
+    margin-bottom: 30px;
+}
+
+.badge {
+    display: inline-block;
+    padding: 6px 12px;
+    border-radius: 999px;
+    background: rgba(247,223,30,.12);
+    color: var(--primary);
+    font-size: 12px;
+    font-weight: 800;
+    margin-bottom: 15px;
+}
+
+.hero h1 {
+    font-size: clamp(35px, 6vw, 68px);
+    line-height: 1;
+    margin-bottom: 20px;
+}
+
+.hero h1 span {
+    color: var(--primary);
+}
+
+.hero p {
+    color: var(--muted);
+    max-width: 700px;
+    font-size: 17px;
+}
+
+.progress-box {
+    margin-top: 30px;
+}
+
+.progress-bar {
+    height: 8px;
+    background: var(--panel2);
+    border-radius: 99px;
+    overflow: hidden;
+}
+
+.progress-fill {
+    width: 0%;
+    height: 100%;
+    background: var(--primary);
+    transition: .3s;
+}
+
+.progress-info {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 8px;
+    font-size: 13px;
+    color: var(--muted);
+}
+
+/* =========================
+   LESSON
+========================= */
+
+.lesson {
+    scroll-margin-top: 95px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    padding: 32px;
+    margin-bottom: 25px;
+}
+
+.lesson-number {
+    color: var(--primary);
+    font-size: 12px;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.lesson h2 {
+    font-size: 30px;
+    margin: 5px 0 12px;
+}
+
+.lesson h3 {
+    margin: 25px 0 10px;
+}
+
+.lesson p {
+    color: var(--muted);
+    margin-bottom: 15px;
+}
+
+.lesson ul {
+    margin: 15px 0 20px 20px;
+    color: var(--muted);
+}
+
+.lesson li {
+    margin-bottom: 7px;
+}
+
+/* =========================
+   CODE
+========================= */
+
+.code-wrapper {
+    position: relative;
+    margin: 20px 0;
+}
+
+pre {
+    overflow-x: auto;
+    background: #05070b;
+    color: #e7edf5;
+    padding: 22px;
+    border-radius: 12px;
+    border: 1px solid var(--border);
+    font-family: Consolas, monospace;
+    font-size: 14px;
+    line-height: 1.7;
+}
+
+.copy-code {
+    position: absolute;
+    top: 9px;
+    right: 9px;
+    padding: 6px 10px;
+    border: 0;
+    border-radius: 6px;
+    background: var(--panel2);
+    color: var(--text);
+    cursor: pointer;
+}
+
+.run-code {
+    margin-top: 10px;
+    background: var(--primary);
+    color: #000;
+    border: 0;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-weight: 800;
+    cursor: pointer;
+}
+
+.output {
+    background: #030509;
+    color: #8ef7a5;
+    min-height: 45px;
+    padding: 14px;
+    border-radius: 9px;
+    margin-top: 10px;
+    font-family: Consolas, monospace;
+    white-space: pre-wrap;
+}
+
+/* =========================
+   CARDS
+========================= */
+
+.cards {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.card {
+    padding: 20px;
+    background: var(--panel2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+}
+
+.card strong {
+    display: block;
+    margin-bottom: 6px;
+}
+
+.card span {
+    color: var(--muted);
+    font-size: 14px;
+}
+
+/* =========================
+   EXERCISE
+========================= */
+
+.exercise {
+    margin-top: 25px;
+    padding: 20px;
+    border: 1px solid var(--border);
+    background: var(--panel2);
+    border-radius: 12px;
+}
+
+.exercise input {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--panel);
+    color: var(--text);
+}
+
+.exercise button {
+    padding: 10px 15px;
+    border: 0;
+    border-radius: 8px;
+    background: var(--primary);
+    cursor: pointer;
+    font-weight: 800;
+}
+
+.feedback {
+    margin-top: 12px;
+    font-weight: 700;
+}
+
+/* =========================
+   SEARCH
+========================= */
+
+.search-box {
+    margin-bottom: 15px;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 12px;
+    background: var(--panel2);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    color: var(--text);
+}
+
+/* =========================
+   MOBILE
+========================= */
+
+.mobile-menu {
+    display: none;
+}
+
+@media(max-width: 850px) {
+
+    .layout {
+        grid-template-columns: 1fr;
+    }
+
+    .sidebar {
+        position: fixed;
+        left: -290px;
+        top: 72px;
+        width: 280px;
+        z-index: 900;
+        transition: .3s;
+    }
+
+    .sidebar.open {
+        left: 0;
+    }
+
+    .mobile-menu {
+        display: block;
+    }
+
+    .cards {
+        grid-template-columns: 1fr;
+    }
+
+    .content {
+        padding: 25px 15px 70px;
+    }
+
+    .hero,
+    .lesson {
+        padding: 22px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo">
+        <span>JS</span>
+        JavaScript Academy
+    </div>
+
+    <div class="header-actions">
+
+        <button class="icon-btn mobile-menu" onclick="toggleMenu()">
+            ☰
+        </button>
+
+        <button class="icon-btn" onclick="toggleTheme()">
+            ◐ Tema
+        </button>
+
+    </div>
+
+</header>
+
+<div class="layout">
+
+<aside class="sidebar" id="sidebar">
+
+    <div class="search-box">
+        <input
+            type="text"
+            id="search"
+            placeholder="Pesquisar aula..."
+            oninput="searchLessons()"
+        >
+    </div>
+
+    <div class="sidebar-title">Fundamentos</div>
+
+    <button class="nav-item" onclick="goTo('aula1')">01 — O que é JS</button>
+    <button class="nav-item" onclick="goTo('aula2')">02 — Variáveis</button>
+    <button class="nav-item" onclick="goTo('aula3')">03 — Tipos</button>
+    <button class="nav-item" onclick="goTo('aula4')">04 — Operadores</button>
+    <button class="nav-item" onclick="goTo('aula5')">05 — Condições</button>
+    <button class="nav-item" onclick="goTo('aula6')">06 — Switch</button>
+    <button class="nav-item" onclick="goTo('aula7')">07 — Loops</button>
+    <button class="nav-item" onclick="goTo('aula8')">08 — Arrays</button>
+    <button class="nav-item" onclick="goTo('aula9')">09 — Objetos</button>
+    <button class="nav-item" onclick="goTo('aula10')">10 — Funções</button>
+
+    <div class="sidebar-title">JavaScript moderno</div>
+
+    <button class="nav-item" onclick="goTo('aula11')">11 — Arrow Functions</button>
+    <button class="nav-item" onclick="goTo('aula12')">12 — Template Strings</button>
+    <button class="nav-item" onclick="goTo('aula13')">13 — Destructuring</button>
+    <button class="nav-item" onclick="goTo('aula14')">14 — Spread</button>
+    <button class="nav-item" onclick="goTo('aula15')">15 — Rest</button>
+    <button class="nav-item" onclick="goTo('aula16')">16 — Map</button>
+    <button class="nav-item" onclick="goTo('aula17')">17 — Filter</button>
+    <button class="nav-item" onclick="goTo('aula18')">18 — Reduce</button>
+
+    <div class="sidebar-title">DOM</div>
+
+    <button class="nav-item" onclick="goTo('aula19')">19 — DOM</button>
+    <button class="nav-item" onclick="goTo('aula20')">20 — Seletores</button>
+    <button class="nav-item" onclick="goTo('aula21')">21 — TextContent</button>
+    <button class="nav-item" onclick="goTo('aula22')">22 — Classes CSS</button>
+    <button class="nav-item" onclick="goTo('aula23')">23 — Criar elementos</button>
+    <button class="nav-item" onclick="goTo('aula24')">24 — Remover elementos</button>
+    <button class="nav-item" onclick="goTo('aula25')">25 — Eventos</button>
+
+    <div class="sidebar-title">Formulários</div>
+
+    <button class="nav-item" onclick="goTo('aula26')">26 — Inputs</button>
+    <button class="nav-item" onclick="goTo('aula27')">27 — Formulários</button>
+    <button class="nav-item" onclick="goTo('aula28')">28 — Validação</button>
+
+    <div class="sidebar-title">Dados</div>
+
+    <button class="nav-item" onclick="goTo('aula29')">29 — LocalStorage</button>
+    <button class="nav-item" onclick="goTo('aula30')">30 — JSON</button>
+
+    <div class="sidebar-title">Avançado</div>
+
+    <button class="nav-item" onclick="goTo('aula31')">31 — Promises</button>
+    <button class="nav-item" onclick="goTo('aula32')">32 — Async/Await</button>
+    <button class="nav-item" onclick="goTo('aula33')">33 — Fetch/API</button>
+    <button class="nav-item" onclick="goTo('aula34')">34 — Try/Catch</button>
+    <button class="nav-item" onclick="goTo('aula35')">35 — Classes</button>
+    <button class="nav-item" onclick="goTo('aula36')">36 — Herança</button>
+    <button class="nav-item" onclick="goTo('aula37')">37 — Modules</button>
+    <button class="nav-item" onclick="goTo('aula38')">38 — Debug</button>
+
+    <div class="sidebar-title">Projetos</div>
+
+    <button class="nav-item" onclick="goTo('aula39')">39 — Contador</button>
+    <button class="nav-item" onclick="goTo('aula40')">40 — Calculadora</button>
+    <button class="nav-item" onclick="goTo('aula41')">41 — Lista de tarefas</button>
+    <button class="nav-item" onclick="goTo('aula42')">42 — Quiz</button>
+    <button class="nav-item" onclick="goTo('aula43')">43 — Projeto final</button>
+
+</aside>
+
+<main class="content">
+
+<section class="hero">
+
+    <span class="badge">CURSO COMPLETO</span>
+
+    <h1>
+        Aprenda <span>JavaScript</span>
+        na prática.
+    </h1>
+
+    <p>
+        Um laboratório interativo para aprender programação
+        desde os fundamentos até aplicações web completas.
+    </p>
+
+    <div class="progress-box">
+
+        <div class="progress-bar">
+            <div class="progress-fill" id="progress"></div>
+        </div>
+
+        <div class="progress-info">
+            <span>Seu progresso</span>
+            <span id="progressText">0%</span>
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- AULA 1 -->
+
+<section class="lesson" id="aula1">
+
+<span class="lesson-number">Aula 01</span>
+
+<h2>O que é JavaScript?</h2>
+
+<p>
+JavaScript é uma linguagem de programação utilizada para
+criar comportamentos, lógica e interatividade em páginas web.
+</p>
+
+<div class="cards">
+
+<div class="card">
+<strong>HTML</strong>
+<span>Estrutura</span>
+</div>
+
+<div class="card">
+<strong>CSS</strong>
+<span>Visual</span>
+</div>
+
+<div class="card">
+<strong>JavaScript</strong>
+<span>Comportamento</span>
+</div>
+
+</div>
+
+<h3>Seu primeiro código</h3>
+
+<div class="code-wrapper">
+
+<button class="copy-code" onclick="copyCode(this)">
+Copiar
+</button>
+
+<pre>console.log("Olá, mundo!");</pre>
+
+</div>
+
+<button class="run-code"
+onclick="runExample(this, 'Olá, mundo!')">
+Executar
+</button>
+
+<div class="output"></div>
+
+</section>
+
+
+<!-- AULA 2 -->
+
+<section class="lesson" id="aula2">
+
+<span class="lesson-number">Aula 02</span>
+
+<h2>Variáveis</h2>
+
+<p>
+Variáveis armazenam informações que podem ser utilizadas
+durante a execução do programa.
+</p>
+
+<pre>let nome = "Davi";
+
+const idade = 16;
+
+console.log(nome);
+console.log(idade);</pre>
+
+<h3>let</h3>
+
+<p>
+Use quando o valor poderá ser alterado.
+</p>
+
+<pre>let contador = 0;
+
+contador = 1;
+contador = 2;</pre>
+
+<h3>const</h3>
+
+<p>
+Use quando a variável não receberá uma nova atribuição.
+</p>
+
+<pre>const nome = "Davi";</pre>
+
+</section>
+
+
+<!-- AULA 3 -->
+
+<section class="lesson" id="aula3">
+
+<span class="lesson-number">Aula 03</span>
+
+<h2>Tipos de dados</h2>
+
+<p>Os principais tipos são:</p>
+
+<ul>
+<li>String</li>
+<li>Number</li>
+<li>Boolean</li>
+<li>Undefined</li>
+<li>Null</li>
+<li>Object</li>
+<li>Array</li>
+</ul>
+
+<pre>const nome = "Davi";
+
+const idade = 16;
+
+const aprovado = true;
+
+let resultado;
+
+const usuario = null;</pre>
+
+</section>
+
+
+<!-- AULA 4 -->
+
+<section class="lesson" id="aula4">
+
+<span class="lesson-number">Aula 04</span>
+
+<h2>Operadores</h2>
+
+<pre>const a = 10;
+const b = 3;
+
+console.log(a + b);
+console.log(a - b);
+console.log(a * b);
+console.log(a / b);
+console.log(a % b);</pre>
+
+<p>
+Operadores de comparação:
+</p>
+
+<pre>10 > 5
+10 < 20
+10 >= 10
+10 <= 20
+10 === 10
+10 !== 5</pre>
+
+</section>
+
+
+<!-- AULA 5 -->
+
+<section class="lesson" id="aula5">
+
+<span class="lesson-number">Aula 05</span>
+
+<h2>if, else e else if</h2>
+
+<p>
+Condicionais permitem que o programa tome decisões.
+</p>
+
+<pre>const idade = 18;
+
+if (idade >= 18) {
+
+    console.log("Maior de idade");
+
+} else {
+
+    console.log("Menor de idade");
+
+}</pre>
+
+<h3>Exemplo</h3>
+
+<pre>const nota = 8;
+
+if (nota >= 9) {
+
+    console.log("Excelente");
+
+} else if (nota >= 7) {
+
+    console.log("Bom");
+
+} else {
+
+    console.log("Precisa estudar");
+
+}</pre>
+
+</section>
+
+
+<!-- AULA 6 -->
+
+<section class="lesson" id="aula6">
+
+<span class="lesson-number">Aula 06</span>
+
+<h2>Switch</h2>
+
+<p>
+O switch é útil quando temos várias opções baseadas
+no mesmo valor.
+</p>
+
+<pre>const dia = 2;
+
+switch (dia) {
+
+    case 1:
+        console.log("Segunda");
+        break;
+
+    case 2:
+        console.log("Terça");
+        break;
+
+    default:
+        console.log("Outro dia");
+
+}</pre>
+
+</section>
+
+
+<!-- AULA 7 -->
+
+<section class="lesson" id="aula7">
+
+<span class="lesson-number">Aula 07</span>
+
+<h2>Loops</h2>
+
+<h3>for</h3>
+
+<pre>for (let i = 0; i < 5; i++) {
+
+    console.log(i);
+
+}</pre>
+
+<h3>while</h3>
+
+<pre>let contador = 0;
+
+while (contador < 5) {
+
+    console.log(contador);
+
+    contador++;
+
+}</pre>
+
+<h3>do while</h3>
+
+<pre>let numero = 0;
+
+do {
+
+    console.log(numero);
+
+    numero++;
+
+} while (numero < 5);</pre>
+
+</section>
+
+
+<!-- AULA 8 -->
+
+<section class="lesson" id="aula8">
+
+<span class="lesson-number">Aula 08</span>
+
+<h2>Arrays</h2>
+
+<pre>const frutas = [
+    "Maçã",
+    "Banana",
+    "Laranja"
+];
+
+console.log(frutas[0]);</pre>
+
+<h3>Adicionar</h3>
+
+<pre>frutas.push("Uva");</pre>
+
+<h3>Remover</h3>
+
+<pre>frutas.pop();</pre>
+
+<h3>Quantidade</h3>
+
+<pre>console.log(frutas.length);</pre>
+
+</section>
+
+
+<!-- AULA 9 -->
+
+<section class="lesson" id="aula9">
+
+<span class="lesson-number">Aula 09</span>
+
+<h2>Objetos</h2>
+
+<pre>const usuario = {
+
+    nome: "Davi",
+
+    idade: 16,
+
+    ativo: true
+
+};
+
+console.log(usuario.nome);</pre>
+
+<p>
+Objetos são fundamentais para representar dados
+estruturados.
+</p>
+
+</section>
+
+
+<!-- AULA 10 -->
+
+<section class="lesson" id="aula10">
+
+<span class="lesson-number">Aula 10</span>
+
+<h2>Funções</h2>
+
+<pre>function saudacao(nome) {
+
+    return "Olá, " + nome;
+
+}
+
+console.log(
+    saudacao("Davi")
+);</pre>
+
+<p>
+Funções permitem reutilizar código.
+</p>
+
+</section>
+
+
+<!-- AULA 11 -->
+
+<section class="lesson" id="aula11">
+
+<span class="lesson-number">Aula 11</span>
+
+<h2>Arrow Functions</h2>
+
+<pre>const somar = (a, b) => {
+
+    return a + b;
+
+};
+
+console.log(
+    somar(10, 5)
+);</pre>
+
+<p>
+Forma reduzida:
+</p>
+
+<pre>const somar = (a, b) => a + b;</pre>
+
+</section>
+
+
+<!-- AULA 12 -->
+
+<section class="lesson" id="aula12">
+
+<span class="lesson-number">Aula 12</span>
+
+<h2>Template Strings</h2>
+
+<pre>const nome = "Davi";
+const idade = 16;
+
+const mensagem =
+    `Meu nome é ${nome} e tenho ${idade} anos.`;
+
+console.log(mensagem);</pre>
+
+</section>
+
+
+<!-- AULA 13 -->
+
+<section class="lesson" id="aula13">
+
+<span class="lesson-number">Aula 13</span>
+
+<h2>Destructuring</h2>
+
+<pre>const usuario = {
+    nome: "Davi",
+    idade: 16
+};
+
+const { nome, idade } = usuario;
+
+console.log(nome);
+console.log(idade);</pre>
+
+</section>
+
+
+<!-- AULA 14 -->
+
+<section class="lesson" id="aula14">
+
+<span class="lesson-number">Aula 14</span>
+
+<h2>Spread Operator</h2>
+
+<pre>const numeros = [1, 2, 3];
+
+const novosNumeros = [
+    ...numeros,
+    4,
+    5
+];
+
+console.log(novosNumeros);</pre>
+
+</section>
+
+
+<!-- AULA 15 -->
+
+<section class="lesson" id="aula15">
+
+<span class="lesson-number">Aula 15</span>
+
+<h2>Rest Operator</h2>
+
+<pre>function somar(...numeros) {
+
+    return numeros.reduce(
+        (total, numero) => total + numero,
+        0
+    );
+
+}
+
+console.log(
+    somar(1, 2, 3, 4)
+);</pre>
+
+</section>
+
+
+<!-- AULA 16 -->
+
+<section class="lesson" id="aula16">
+
+<span class="lesson-number">Aula 16</span>
+
+<h2>Map</h2>
+
+<pre>const numeros = [1, 2, 3];
+
+const dobro = numeros.map(
+    numero => numero * 2
+);
+
+console.log(dobro);</pre>
+
+</section>
+
+
+<!-- AULA 17 -->
+
+<section class="lesson" id="aula17">
+
+<span class="lesson-number">Aula 17</span>
+
+<h2>Filter</h2>
+
+<pre>const numeros = [1, 2, 3, 4, 5];
+
+const pares = numeros.filter(
+    numero => numero % 2 === 0
+);
+
+console.log(pares);</pre>
+
+</section>
+
+
+<!-- AULA 18 -->
+
+<section class="lesson" id="aula18">
+
+<span class="lesson-number">Aula 18</span>
+
+<h2>Reduce</h2>
+
+<pre>const numeros = [10, 20, 30];
+
+const total = numeros.reduce(
+    (soma, numero) => soma + numero,
+    0
+);
+
+console.log(total);</pre>
+
+</section>
+
+
+<!-- AULA 19 -->
+
+<section class="lesson" id="aula19">
+
+<span class="lesson-number">Aula 19</span>
+
+<h2>DOM</h2>
+
+<p>
+DOM significa Document Object Model.
+Ele permite que JavaScript controle o HTML.
+</p>
+
+<pre>const titulo =
+    document.getElementById("titulo");</pre>
+
+</section>
+
+
+<!-- AULA 20 -->
+
+<section class="lesson" id="aula20">
+
+<span class="lesson-number">Aula 20</span>
+
+<h2>Seletores</h2>
+
+<pre>document.getElementById("titulo");
+
+document.querySelector(".card");
+
+document.querySelector("#menu");
+
+document.querySelectorAll("p");</pre>
+
+</section>
+
+
+<!-- AULA 21 -->
+
+<section class="lesson" id="aula21">
+
+<span class="lesson-number">Aula 21</span>
+
+<h2>textContent</h2>
+
+<pre>const elemento =
+    document.getElementById("titulo");
+
+elemento.textContent =
+    "Novo título";</pre>
+
+</section>
+
+
+<!-- AULA 22 -->
+
+<section class="lesson" id="aula22">
+
+<span class="lesson-number">Aula 22</span>
+
+<h2>Classes CSS</h2>
+
+<pre>elemento.classList.add("ativo");
+
+elemento.classList.remove("ativo");
+
+elemento.classList.toggle("ativo");
+
+elemento.classList.contains("ativo");</pre>
+
+</section>
+
+
+<!-- AULA 23 -->
+
+<section class="lesson" id="aula23">
+
+<span class="lesson-number">Aula 23</span>
+
+<h2>Criar elementos</h2>
+
+<pre>const div =
+    document.createElement("div");
+
+div.textContent =
+    "Elemento criado!";
+
+document.body.appendChild(div);</pre>
+
+</section>
+
+
+<!-- AULA 24 -->
+
+<section class="lesson" id="aula24">
+
+<span class="lesson-number">Aula 24</span>
+
+<h2>Remover elementos</h2>
+
+<pre>elemento.remove();</pre>
+
+<p>
+Podemos criar interfaces dinamicamente e depois
+remover elementos quando necessário.
+</p>
+
+</section>
+
+
+<!-- AULA 25 -->
+
+<section class="lesson" id="aula25">
+
+<span class="lesson-number">Aula 25</span>
+
+<h2>Eventos</h2>
+
+<pre>const botao =
+    document.querySelector("button");
+
+botao.addEventListener(
+    "click",
+    () => {
+
+        console.log("Clicou!");
+
+    }
+);</pre>
+
+</section>
+
+
+<!-- AULA 26 -->
+
+<section class="lesson" id="aula26">
+
+<span class="lesson-number">Aula 26</span>
+
+<h2>Inputs</h2>
+
+<pre>const input =
+    document.querySelector("input");
+
+console.log(input.value);</pre>
+
+</section>
+
+
+<!-- AULA 27 -->
+
+<section class="lesson" id="aula27">
+
+<span class="lesson-number">Aula 27</span>
+
+<h2>Formulários</h2>
+
+<pre>form.addEventListener(
+    "submit",
+    event => {
+
+        event.preventDefault();
+
+        console.log("Formulário enviado");
+
+    }
+);</pre>
+
+</section>
+
+
+<!-- AULA 28 -->
+
+<section class="lesson" id="aula28">
+
+<span class="lesson-number">Aula 28</span>
+
+<h2>Validação</h2>
+
+<pre>if (nome.value.trim() === "") {
+
+    console.log(
+        "Nome obrigatório"
+    );
+
+}</pre>
+
+</section>
+
+
+<!-- AULA 29 -->
+
+<section class="lesson" id="aula29">
+
+<span class="lesson-number">Aula 29</span>
+
+<h2>LocalStorage</h2>
+
+<pre>localStorage.setItem(
+    "nome",
+    "Davi"
+);
+
+const nome =
+    localStorage.getItem("nome");
+
+console.log(nome);</pre>
+
+</section>
+
+
+<!-- AULA 30 -->
+
+<section class="lesson" id="aula30">
+
+<span class="lesson-number">Aula 30</span>
+
+<h2>JSON</h2>
+
+<pre>const usuario = {
+    nome: "Davi",
+    idade: 16
+};
+
+const texto =
+    JSON.stringify(usuario);
+
+const objeto =
+    JSON.parse(texto);</pre>
+
+</section>
+
+
+<!-- AULA 31 -->
+
+<section class="lesson" id="aula31">
+
+<span class="lesson-number">Aula 31</span>
+
+<h2>Promises</h2>
+
+<pre>const promessa = new Promise(
+    (resolve, reject) => {
+
+        resolve("Concluído!");
+
+    }
+);
+
+promessa.then(
+    resultado => console.log(resultado)
+);</pre>
+
+</section>
+
+
+<!-- AULA 32 -->
+
+<section class="lesson" id="aula32">
+
+<span class="lesson-number">Aula 32</span>
+
+<h2>Async / Await</h2>
+
+<pre>async function executar() {
+
+    const resultado =
+        await promessa;
+
+    console.log(resultado);
+
+}</pre>
+
+<p>
+Async/Await facilita o trabalho com operações
+assíncronas.
+</p>
+
+</section>
+
+
+<!-- AULA 33 -->
+
+<section class="lesson" id="aula33">
+
+<span class="lesson-number">Aula 33</span>
+
+<h2>Fetch e APIs</h2>
+
+<pre>async function buscarDados() {
+
+    const resposta =
+        await fetch(
+            "https://jsonplaceholder.typicode.com/users"
+        );
+
+    const dados =
+        await resposta.json();
+
+    console.log(dados);
+
+}</pre>
+
+</section>
+
+
+<!-- AULA 34 -->
+
+<section class="lesson" id="aula34">
+
+<span class="lesson-number">Aula 34</span>
+
+<h2>Try / Catch</h2>
+
+<pre>try {
+
+    console.log("Executando...");
+
+} catch (erro) {
+
+    console.error(erro);
+
+} finally {
+
+    console.log("Finalizado");
+
+}</pre>
+
+</section>
+
+
+<!-- AULA 35 -->
+
+<section class="lesson" id="aula35">
+
+<span class="lesson-number">Aula 35</span>
+
+<h2>Classes</h2>
+
+<pre>class Pessoa {
+
+    constructor(nome) {
+
+        this.nome = nome;
+
+    }
+
+    apresentar() {
+
+        return `Olá, ${this.nome}`;
+
+    }
+
+}
+
+const pessoa =
+    new Pessoa("Davi");
+
+console.log(
+    pessoa.apresentar()
+);</pre>
+
+</section>
+
+
+<!-- AULA 36 -->
+
+<section class="lesson" id="aula36">
+
+<span class="lesson-number">Aula 36</span>
+
+<h2>Herança</h2>
+
+<pre>class Animal {
+
+    falar() {
+
+        console.log("Som");
+
+    }
+
+}
+
+class Cachorro extends Animal {
+
+    latir() {
+
+        console.log("Au au!");
+
+    }
+
+}
+
+const cachorro =
+    new Cachorro();
+
+cachorro.falar();
+cachorro.latir();</pre>
+
+</section>
+
+
+<!-- AULA 37 -->
+
+<section class="lesson" id="aula37">
+
+<span class="lesson-number">Aula 37</span>
+
+<h2>Modules</h2>
+
+<p>
+Projetos grandes podem separar o código em arquivos.
+</p>
+
+<pre>export function somar(a, b) {
+
+    return a + b;
+
+}</pre>
+
+<p>Depois:</p>
+
+<pre>import { somar }
+from "./matematica.js";</pre>
+
+</section>
+
+
+<!-- AULA 38 -->
+
+<section class="lesson" id="aula38">
+
+<span class="lesson-number">Aula 38</span>
+
+<h2>Debug</h2>
+
+<p>
+Use o console do navegador para encontrar problemas.
+</p>
+
+<pre>console.log("Teste");
+
+console.warn("Aviso");
+
+console.error("Erro");
+
+console.table([
+    {nome: "Davi"},
+    {nome: "João"}
+]);</pre>
+
+</section>
+
+
+<!-- AULA 39 -->
+
+<section class="lesson" id="aula39">
+
+<span class="lesson-number">Projeto 01</span>
+
+<h2>Contador</h2>
+
+<div class="exercise">
+
+<h3 id="contador">0</h3>
+
+<button onclick="alterarContador(-1)">
+−
+</button>
+
+<button onclick="alterarContador(1)">
++
+</button>
+
+</div>
+
+</section>
+
+
+<!-- AULA 40 -->
+
+<section class="lesson" id="aula40">
+
+<span class="lesson-number">Projeto 02</span>
+
+<h2>Calculadora</h2>
+
+<div class="exercise">
+
+<input
+    id="numero1"
+    type="number"
+    placeholder="Primeiro número"
+>
+
+<input
+    id="numero2"
+    type="number"
+    placeholder="Segundo número"
+>
+
+<button onclick="calcular()">
+Somar
+</button>
+
+<div
+    class="feedback"
+    id="resultadoCalc">
+</div>
+
+</div>
+
+</section>
+
+
+<!-- AULA 41 -->
+
+<section class="lesson" id="aula41">
+
+<span class="lesson-number">Projeto 03</span>
+
+<h2>Lista de tarefas</h2>
+
+<div class="exercise">
+
+<input
+    id="tarefaInput"
+    placeholder="Digite uma tarefa..."
+>
+
+<button onclick="adicionarTarefa()">
+Adicionar
+</button>
+
+<ul id="listaTarefas"></ul>
+
+</div>
+
+</section>
+
+
+<!-- AULA 42 -->
+
+<section class="lesson" id="aula42">
+
+<span class="lesson-number">Projeto 04</span>
+
+<h2>Mini Quiz</h2>
+
+<div class="exercise">
+
+<p>
+Qual linguagem é responsável pela lógica
+e interatividade de uma página?
+</p>
+
+<button onclick="responderQuiz('HTML')">
+HTML
+</button>
+
+<button onclick="responderQuiz('CSS')">
+CSS
+</button>
+
+<button onclick="responderQuiz('JavaScript')">
+JavaScript
+</button>
+
+<div
+    id="quizResultado"
+    class="feedback">
+</div>
+
+</div>
+
+</section>
+
+
+<!-- AULA 43 -->
+
+<section class="lesson" id="aula43">
+
+<span class="lesson-number">Projeto Final</span>
+
+<h2>Aplicação completa</h2>
+
+<p>
+Agora você possui os principais fundamentos para
+começar a construir aplicações web utilizando JavaScript.
+</p>
+
+<div class="cards">
+
+<div class="card">
+<strong>Frontend</strong>
+<span>HTML + CSS + JavaScript</span>
+</div>
+
+<div class="card">
+<strong>Dados</strong>
+<span>JSON + LocalStorage + APIs</span>
+</div>
+
+<div class="card">
+<strong>Lógica</strong>
+<span>Funções + Objetos + Arrays</span>
+</div>
+
+</div>
+
+<h3>O que estudar depois?</h3>
+
+<ul>
+<li>Node.js</li>
+<li>Express</li>
+<li>Banco de dados</li>
+<li>TypeScript</li>
+<li>React</li>
+<li>Testes automatizados</li>
+<li>Git e GitHub</li>
+<li>Arquitetura de aplicações</li>
+</ul>
+
+</section>
+
+</main>
+</div>
+
+
+<script>
+
+/* ========================================
+   TEMA
+======================================== */
+
+function toggleTheme() {
+
+    document.body.classList.toggle("light");
+
+    const tema =
+        document.body.classList.contains("light")
+            ? "light"
+            : "dark";
+
+    localStorage.setItem("tema", tema);
+
+}
+
+
+/* ========================================
+   CARREGAR TEMA
+======================================== */
+
+const temaSalvo =
+    localStorage.getItem("tema");
+
+if (temaSalvo === "light") {
+
+    document.body.classList.add("light");
+
+}
+
+
+/* ========================================
+   MENU
+======================================== */
+
+function toggleMenu() {
+
+    document
+        .getElementById("sidebar")
+        .classList.toggle("open");
+
+}
+
+
+/* ========================================
+   NAVEGAÇÃO
+======================================== */
+
+function goTo(id) {
+
+    const elemento =
+        document.getElementById(id);
+
+    if (!elemento) return;
+
+    elemento.scrollIntoView({
+        behavior: "smooth"
+    });
+
+    document
+        .getElementById("sidebar")
+        .classList.remove("open");
+
+}
+
+
+/* ========================================
+   COPIAR CÓDIGO
+======================================== */
+
+function copyCode(button) {
+
+    const code =
+        button.parentElement
+        .querySelector("pre")
+        .innerText;
+
+    navigator.clipboard.writeText(code);
+
+    button.textContent = "Copiado!";
+
+    setTimeout(() => {
+
+        button.textContent = "Copiar";
+
+    }, 1500);
+
+}
+
+
+/* ========================================
+   EXECUTAR EXEMPLO
+======================================== */
+
+function runExample(button, texto) {
+
+    const output =
+        button.nextElementSibling;
+
+    output.textContent = texto;
+
+}
+
+
+/* ========================================
+   CONTADOR
+======================================== */
+
+let contador = 0;
+
+function alterarContador(valor) {
+
+    contador += valor;
+
+    document
+        .getElementById("contador")
+        .textContent = contador;
+
+}
+
+
+/* ========================================
+   CALCULADORA
+======================================== */
+
+function calcular() {
+
+    const numero1 =
+        Number(
+            document.getElementById("numero1").value
+        );
+
+    const numero2 =
+        Number(
+            document.getElementById("numero2").value
+        );
+
+    const resultado =
+        numero1 + numero2;
+
+    document
+        .getElementById("resultadoCalc")
+        .textContent =
+        "Resultado: " + resultado;
+
+}
+
+
+/* ========================================
+   LISTA DE TAREFAS
+======================================== */
+
+function adicionarTarefa() {
+
+    const input =
+        document.getElementById("tarefaInput");
+
+    const texto =
+        input.value.trim();
+
+    if (!texto) return;
+
+    const li =
+        document.createElement("li");
+
+    li.textContent = texto;
+
+    li.style.cursor = "pointer";
+    li.style.marginTop = "8px";
+
+    li.onclick = function() {
+
+        li.remove();
+
+    };
+
+    document
+        .getElementById("listaTarefas")
+        .appendChild(li);
+
+    input.value = "";
+
+}
+
+
+/* ========================================
+   QUIZ
+======================================== */
+
+function responderQuiz(resposta) {
+
+    const resultado =
+        document.getElementById(
+            "quizResultado"
+        );
+
+    if (resposta === "JavaScript") {
+
+        resultado.textContent =
+            "✓ Correto!";
+
+        resultado.style.color =
+            "#22c55e";
+
+    } else {
+
+        resultado.textContent =
+            "✗ Tente novamente.";
+
+        resultado.style.color =
+            "#ef4444";
+
+    }
+
+}
+
+
+/* ========================================
+   PESQUISA
+======================================== */
+
+function searchLessons() {
+
+    const pesquisa =
+        document
+            .getElementById("search")
+            .value
+            .toLowerCase();
+
+    const botoes =
+        document.querySelectorAll(".nav-item");
+
+    botoes.forEach(botao => {
+
+        const texto =
+            botao.textContent.toLowerCase();
+
+        if (texto.includes(pesquisa)) {
+
+            botao.style.display = "block";
+
+        } else {
+
+            botao.style.display = "none";
+
+        }
+
+    });
+
+}
+
+
+/* ========================================
+   PROGRESSO
+======================================== */
+
+const lessons =
+    document.querySelectorAll(".lesson");
+
+const progressBar =
+    document.getElementById("progress");
+
+const progressText =
+    document.getElementById("progressText");
+
+function updateProgress() {
+
+    let vistos = 0;
+
+    lessons.forEach(lesson => {
+
+        const rect =
+            lesson.getBoundingClientRect();
+
+        if (
+            rect.top < window.innerHeight * .6 &&
+            rect.bottom > 0
+        ) {
+
+            vistos++;
+
+        }
+
+    });
+
+    const porcentagem =
+        Math.round(
+            (vistos / lessons.length) * 100
+        );
+
+    progressBar.style.width =
+        porcentagem + "%";
+
+    progressText.textContent =
+        porcentagem + "%";
+
+}
+
+window.addEventListener(
+    "scroll",
+    updateProgress
+);
+
+updateProgress();
+
+
+/* ========================================
+   ATALHO CTRL + K
+======================================== */
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        if (
+            (event.ctrlKey || event.metaKey) &&
+            event.key.toLowerCase() === "k"
+        ) {
+
+            event.preventDefault();
+
+            document
+                .getElementById("search")
+                .focus();
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+</html>
+```
