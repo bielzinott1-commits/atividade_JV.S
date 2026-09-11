@@ -1,0 +1,3276 @@
+```html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>JavaScript Cyber Lab</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+:root{
+
+    --bg:#05070c;
+    --panel:#0b1019;
+    --panel2:#101722;
+    --border:#1c2938;
+
+    --text:#f4f7fb;
+    --muted:#7f8da0;
+
+    --yellow:#f7df1e;
+    --cyan:#00e5ff;
+    --green:#39ff88;
+    --red:#ff4d67;
+
+    --shadow:
+        0 20px 70px rgba(0,0,0,.45);
+
+}
+
+body{
+
+    font-family:
+        Inter,
+        Segoe UI,
+        Arial,
+        sans-serif;
+
+    background:
+        radial-gradient(
+            circle at 80% 10%,
+            rgba(0,229,255,.08),
+            transparent 25%
+        ),
+        radial-gradient(
+            circle at 10% 50%,
+            rgba(247,223,30,.05),
+            transparent 30%
+        ),
+        var(--bg);
+
+    color:var(--text);
+
+    min-height:100vh;
+
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+header{
+
+    height:72px;
+
+    position:sticky;
+    top:0;
+
+    z-index:1000;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:space-between;
+
+    padding:
+        0 28px;
+
+    background:
+        rgba(5,7,12,.86);
+
+    backdrop-filter:
+        blur(20px);
+
+    border-bottom:
+        1px solid var(--border);
+
+}
+
+.logo{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:12px;
+
+    font-weight:900;
+
+}
+
+.logo-icon{
+
+    width:42px;
+    height:42px;
+
+    display:grid;
+
+    place-items:center;
+
+    background:var(--yellow);
+
+    color:#000;
+
+    border-radius:10px;
+
+    font-weight:1000;
+
+}
+
+.status{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:8px;
+
+    color:var(--green);
+
+    font-size:13px;
+
+}
+
+.status-dot{
+
+    width:8px;
+    height:8px;
+
+    background:var(--green);
+
+    border-radius:50%;
+
+    box-shadow:
+        0 0 12px var(--green);
+
+}
+
+
+/* =========================
+   LAYOUT
+========================= */
+
+.app{
+
+    display:grid;
+
+    grid-template-columns:
+        270px
+        1fr;
+
+    min-height:
+        calc(100vh - 72px);
+
+}
+
+
+/* =========================
+   SIDEBAR
+========================= */
+
+aside{
+
+    border-right:
+        1px solid var(--border);
+
+    background:
+        rgba(11,16,25,.8);
+
+    padding:20px 14px;
+
+    position:sticky;
+
+    top:72px;
+
+    height:
+        calc(100vh - 72px);
+
+    overflow:auto;
+
+}
+
+.section-title{
+
+    color:var(--muted);
+
+    font-size:10px;
+
+    text-transform:uppercase;
+
+    letter-spacing:2px;
+
+    font-weight:900;
+
+    margin:
+        20px 10px 8px;
+
+}
+
+.lesson-btn{
+
+    width:100%;
+
+    border:0;
+
+    background:transparent;
+
+    color:var(--muted);
+
+    padding:11px 12px;
+
+    border-radius:8px;
+
+    text-align:left;
+
+    cursor:pointer;
+
+    margin-bottom:3px;
+
+    transition:.2s;
+
+}
+
+.lesson-btn:hover{
+
+    background:var(--panel2);
+
+    color:white;
+
+}
+
+.lesson-btn.active{
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(247,223,30,.15),
+            transparent
+        );
+
+    color:var(--yellow);
+
+    border-left:
+        3px solid var(--yellow);
+
+}
+
+
+/* =========================
+   MAIN
+========================= */
+
+main{
+
+    width:
+        min(1150px,100%);
+
+    margin:auto;
+
+    padding:
+        40px 30px 100px;
+
+}
+
+
+/* =========================
+   HERO
+========================= */
+
+.hero{
+
+    display:grid;
+
+    grid-template-columns:
+        1.4fr
+        .8fr;
+
+    gap:25px;
+
+    margin-bottom:25px;
+
+}
+
+.hero-main{
+
+    padding:38px;
+
+    background:
+        linear-gradient(
+            135deg,
+            rgba(247,223,30,.08),
+            rgba(0,229,255,.04)
+        ),
+        var(--panel);
+
+    border:
+        1px solid var(--border);
+
+    border-radius:18px;
+
+    box-shadow:var(--shadow);
+
+}
+
+.tag{
+
+    color:var(--cyan);
+
+    font-size:11px;
+
+    font-weight:900;
+
+    letter-spacing:2px;
+
+}
+
+.hero h1{
+
+    font-size:
+        clamp(38px,6vw,68px);
+
+    line-height:1;
+
+    margin:
+        12px 0 20px;
+
+}
+
+.hero h1 span{
+
+    color:var(--yellow);
+
+}
+
+.hero p{
+
+    color:var(--muted);
+
+    max-width:650px;
+
+}
+
+.stats{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:12px;
+
+}
+
+.stat{
+
+    background:var(--panel);
+
+    border:
+        1px solid var(--border);
+
+    border-radius:15px;
+
+    padding:22px;
+
+}
+
+.stat strong{
+
+    display:block;
+
+    font-size:28px;
+
+    color:var(--yellow);
+
+}
+
+.stat span{
+
+    color:var(--muted);
+
+    font-size:13px;
+
+}
+
+
+/* =========================
+   XP
+========================= */
+
+.xp-box{
+
+    margin-top:25px;
+
+}
+
+.xp-top{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    color:var(--muted);
+
+    font-size:13px;
+
+    margin-bottom:7px;
+
+}
+
+.xp-bar{
+
+    height:9px;
+
+    background:#151c27;
+
+    border-radius:99px;
+
+    overflow:hidden;
+
+}
+
+.xp-fill{
+
+    height:100%;
+
+    width:0%;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--yellow),
+            var(--cyan)
+        );
+
+    transition:.5s;
+
+}
+
+
+/* =========================
+   LESSON
+========================= */
+
+.lesson{
+
+    display:none;
+
+    animation:
+        fade .35s ease;
+
+}
+
+.lesson.active{
+
+    display:block;
+
+}
+
+@keyframes fade{
+
+    from{
+
+        opacity:0;
+
+        transform:
+            translateY(10px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:
+            translateY(0);
+
+    }
+
+}
+
+
+/* =========================
+   CARD
+========================= */
+
+.card{
+
+    background:var(--panel);
+
+    border:
+        1px solid var(--border);
+
+    border-radius:18px;
+
+    padding:30px;
+
+    margin-bottom:20px;
+
+    box-shadow:var(--shadow);
+
+}
+
+.card h2{
+
+    font-size:30px;
+
+    margin:
+        7px 0 12px;
+
+}
+
+.card h3{
+
+    margin:
+        25px 0 10px;
+
+}
+
+.card p{
+
+    color:var(--muted);
+
+    margin-bottom:15px;
+
+}
+
+.concept{
+
+    padding:18px;
+
+    border-left:
+        3px solid var(--cyan);
+
+    background:
+        rgba(0,229,255,.05);
+
+    color:#cbd5e1;
+
+    border-radius:8px;
+
+    margin:
+        20px 0;
+
+}
+
+
+/* =========================
+   CODE EDITOR
+========================= */
+
+.editor{
+
+    border:
+        1px solid var(--border);
+
+    border-radius:12px;
+
+    overflow:hidden;
+
+    margin-top:20px;
+
+}
+
+.editor-head{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:
+        10px 14px;
+
+    background:#080c13;
+
+    border-bottom:
+        1px solid var(--border);
+
+}
+
+.editor-title{
+
+    color:var(--muted);
+
+    font-size:12px;
+
+    font-family:monospace;
+
+}
+
+.editor textarea{
+
+    width:100%;
+
+    min-height:220px;
+
+    resize:vertical;
+
+    border:0;
+
+    outline:0;
+
+    padding:20px;
+
+    background:#030509;
+
+    color:#d8e2ef;
+
+    font-family:
+        Consolas,
+        monospace;
+
+    font-size:14px;
+
+    line-height:1.7;
+
+}
+
+.run{
+
+    background:var(--yellow);
+
+    color:#000;
+
+    border:0;
+
+    padding:
+        9px 15px;
+
+    border-radius:7px;
+
+    cursor:pointer;
+
+    font-weight:900;
+
+}
+
+.output{
+
+    background:#020407;
+
+    border:
+        1px solid var(--border);
+
+    padding:18px;
+
+    min-height:70px;
+
+    margin-top:12px;
+
+    border-radius:10px;
+
+    font-family:monospace;
+
+    color:var(--green);
+
+    white-space:pre-wrap;
+
+}
+
+
+/* =========================
+   CHALLENGE
+========================= */
+
+.challenge{
+
+    border:
+        1px solid rgba(247,223,30,.2);
+
+    background:
+        rgba(247,223,30,.035);
+
+    padding:22px;
+
+    border-radius:12px;
+
+    margin-top:25px;
+
+}
+
+.challenge-title{
+
+    color:var(--yellow);
+
+    font-weight:900;
+
+    margin-bottom:10px;
+
+}
+
+.answer{
+
+    display:flex;
+
+    gap:10px;
+
+    margin-top:15px;
+
+}
+
+.answer input{
+
+    flex:1;
+
+    background:#070b11;
+
+    border:
+        1px solid var(--border);
+
+    color:white;
+
+    padding:12px;
+
+    border-radius:8px;
+
+    outline:none;
+
+}
+
+.answer button{
+
+    border:0;
+
+    background:var(--yellow);
+
+    color:#000;
+
+    padding:
+        0 18px;
+
+    border-radius:8px;
+
+    font-weight:900;
+
+    cursor:pointer;
+
+}
+
+.feedback{
+
+    margin-top:12px;
+
+    font-weight:800;
+
+}
+
+
+/* =========================
+   PROJECT
+========================= */
+
+.project{
+
+    display:grid;
+
+    grid-template-columns:
+        repeat(2,1fr);
+
+    gap:15px;
+
+}
+
+.project-box{
+
+    padding:20px;
+
+    background:var(--panel2);
+
+    border:
+        1px solid var(--border);
+
+    border-radius:12px;
+
+}
+
+.project-box h3{
+
+    margin:0 0 8px;
+
+}
+
+.project-box p{
+
+    font-size:13px;
+
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+.navigation{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    gap:12px;
+
+    margin-top:20px;
+
+}
+
+.nav-button{
+
+    border:
+        1px solid var(--border);
+
+    background:var(--panel);
+
+    color:white;
+
+    padding:
+        12px 18px;
+
+    border-radius:9px;
+
+    cursor:pointer;
+
+}
+
+.nav-button.primary{
+
+    background:var(--yellow);
+
+    color:#000;
+
+    border:0;
+
+    font-weight:900;
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:850px){
+
+    .app{
+
+        grid-template-columns:1fr;
+
+    }
+
+    aside{
+
+        position:fixed;
+
+        left:-280px;
+
+        width:270px;
+
+        z-index:900;
+
+        transition:.3s;
+
+    }
+
+    aside.open{
+
+        left:0;
+
+    }
+
+    .hero{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .project{
+
+        grid-template-columns:1fr;
+
+    }
+
+    main{
+
+        padding:
+            25px 15px 70px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<header>
+
+<div class="logo">
+
+<div class="logo-icon">
+JS
+</div>
+
+JavaScript Cyber Lab
+
+</div>
+
+
+<div class="status">
+
+<div class="status-dot"></div>
+
+Sistema online
+
+</div>
+
+</header>
+
+
+
+<div class="app">
+
+
+<aside id="sidebar">
+
+<div class="section-title">
+Fundamentos
+</div>
+
+<button class="lesson-btn active"
+onclick="abrirAula(0)">
+01 · Primeiro código
+</button>
+
+<button class="lesson-btn"
+onclick="abrirAula(1)">
+02 · Variáveis
+</button>
+
+<button class="lesson-btn"
+onclick="abrirAula(2)">
+03 · Tipos
+</button>
+
+<button class="lesson-btn"
+onclick="abrirAula(3)">
+04 · Condições
+</button>
+
+<button class="lesson-btn"
+onclick="abrirAula(4)">
+05 · Loops
+</button>
+
+<div class="section-title">
+Estruturas
+</div>
+
+<button class="lesson-btn"
+onclick="abrirAula(5)">
+06 · Arrays
+</button>
+
+<button class="lesson-btn"
+onclick="abrirAula(6)">
+07 · Objetos
+</button>
+
+<button class="lesson-btn"
+onclick="abrirAula(7)">
+08 · Funções
+</button>
+
+<button class="lesson-btn"
+onclick="abrirAula(8)">
+09 · Arrow Functions
+</button>
+
+<div class="section-title">
+Web
+</div>
+
+<button class="lesson-btn"
+onclick="abrirAula(9)">
+10 · DOM
+</button>
+
+<button class="lesson-btn"
+onclick="abrirAula(10)">
+11 · Eventos
+</button>
+
+<button class="lesson-btn"
+onclick="abrirAula(11)">
+12 · Formulários
+</button>
+
+<button class="lesson-btn"
+onclick="abrirAula(12)">
+13 · LocalStorage
+</button>
+
+<div class="section-title">
+Avançado
+</div>
+
+<button class="lesson-btn"
+onclick="abrirAula(13)">
+14 · JSON
+</button>
+
+<button class="lesson-btn"
+onclick="abrirAula(14)">
+15 · Promises
+</button>
+
+<button class="lesson-btn"
+onclick="abrirAula(15)">
+16 · Async / Await
+</button>
+
+<button class="lesson-btn"
+onclick="abrirAula(16)">
+17 · APIs
+</button>
+
+<button class="lesson-btn"
+onclick="abrirAula(17)">
+18 · Classes
+</button>
+
+<div class="section-title">
+Projetos
+</div>
+
+<button class="lesson-btn"
+onclick="abrirAula(18)">
+19 · Contador
+</button>
+
+<button class="lesson-btn"
+onclick="abrirAula(19)">
+20 · Projeto Final
+</button>
+
+</aside>
+
+
+
+<main>
+
+
+<section class="hero">
+
+
+<div class="hero-main">
+
+<div class="tag">
+JAVASCRIPT // TRAINING SYSTEM
+</div>
+
+<h1>
+Aprenda <span>JavaScript</span>
+programando.
+</h1>
+
+<p>
+Você não vai apenas ler código.
+Vai escrever, executar, testar, errar,
+corrigir e construir seus próprios programas.
+</p>
+
+
+<div class="xp-box">
+
+<div class="xp-top">
+
+<span>Experiência</span>
+
+<span id="xpText">
+0 XP
+</span>
+
+</div>
+
+<div class="xp-bar">
+
+<div
+class="xp-fill"
+id="xpBar">
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+
+<div class="stats">
+
+<div class="stat">
+
+<strong id="level">
+1
+</strong>
+
+<span>Nível</span>
+
+</div>
+
+
+<div class="stat">
+
+<strong id="xp">
+0
+</strong>
+
+<span>XP conquistado</span>
+
+</div>
+
+
+<div class="stat">
+
+<strong id="completed">
+0
+</strong>
+
+<span>Aulas concluídas</span>
+
+</div>
+
+
+<div class="stat">
+
+<strong>
+JS
+</strong>
+
+<span>Linguagem</span>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =========================
+     AULA 01
+========================= -->
+
+<section class="lesson active">
+
+<div class="card">
+
+<div class="tag">
+MISSÃO 01
+</div>
+
+<h2>
+Seu primeiro programa
+</h2>
+
+<p>
+Antes de aprender frameworks, APIs ou sistemas complexos,
+você precisa entender como JavaScript executa instruções.
+</p>
+
+
+<div class="concept">
+
+<strong>💡 Conceito</strong>
+
+<br>
+
+JavaScript executa instruções de cima para baixo,
+seguindo a lógica que você programou.
+
+</div>
+
+
+<h3>
+Teste você mesmo
+</h3>
+
+
+<div class="editor">
+
+<div class="editor-head">
+
+<span class="editor-title">
+main.js
+</span>
+
+<button
+class="run"
+onclick="executarEditor(this)">
+▶ Executar
+</button>
+
+</div>
+
+
+<textarea>
+console.log("Olá, mundo!");
+
+console.log(10 + 20);
+
+console.log("Estou aprendendo JavaScript!");
+</textarea>
+
+</div>
+
+
+<div class="output"></div>
+
+
+<div class="challenge">
+
+<div class="challenge-title">
+⚡ DESAFIO
+</div>
+
+<p>
+Qual será o resultado de <b>10 + 5</b>?
+</p>
+
+<div class="answer">
+
+<input
+id="answer1"
+placeholder="Digite sua resposta">
+
+<button onclick="desafio(1)">
+Enviar
+</button>
+
+</div>
+
+<div
+id="feedback1"
+class="feedback">
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =========================
+     AULA 02
+========================= -->
+
+<section class="lesson">
+
+<div class="card">
+
+<div class="tag">
+MISSÃO 02
+</div>
+
+<h2>
+Variáveis
+</h2>
+
+<p>
+Variáveis permitem guardar informações na memória
+durante a execução do programa.
+</p>
+
+
+<div class="concept">
+
+Imagine uma variável como uma caixa.
+
+Você coloca um valor dentro dela e depois
+pode utilizar esse valor no programa.
+
+</div>
+
+
+<div class="editor">
+
+<div class="editor-head">
+
+<span class="editor-title">
+variables.js
+</span>
+
+<button
+class="run"
+onclick="executarEditor(this)">
+▶ Executar
+</button>
+
+</div>
+
+
+<textarea>
+let nome = "Davi";
+
+let idade = 16;
+
+const linguagem = "JavaScript";
+
+console.log(nome);
+
+console.log(idade);
+
+console.log(linguagem);</textarea>
+
+</div>
+
+<div class="output"></div>
+
+
+<h3>
+let × const
+</h3>
+
+<p>
+Use <b>let</b> quando precisar alterar a variável.
+Use <b>const</b> quando a referência não deverá receber
+uma nova atribuição.
+</p>
+
+
+<div class="challenge">
+
+<div class="challenge-title">
+⚡ DESAFIO
+</div>
+
+<p>
+Crie uma variável chamada <b>cidade</b> contendo o nome
+da sua cidade.
+</p>
+
+<div class="editor">
+
+<textarea>
+let cidade = "Digite sua cidade";
+
+console.log(cidade);</textarea>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =========================
+     AULA 03
+========================= -->
+
+<section class="lesson">
+
+<div class="card">
+
+<div class="tag">
+MISSÃO 03
+</div>
+
+<h2>
+Tipos de dados
+</h2>
+
+<p>
+JavaScript trabalha com diferentes tipos de valores.
+</p>
+
+
+<div class="project">
+
+<div class="project-box">
+
+<h3>String</h3>
+
+<p>
+Texto.
+</p>
+
+<pre>"Olá"</pre>
+
+</div>
+
+
+<div class="project-box">
+
+<h3>Number</h3>
+
+<p>
+Números.
+</p>
+
+<pre>100</pre>
+
+</div>
+
+
+<div class="project-box">
+
+<h3>Boolean</h3>
+
+<p>
+Verdadeiro ou falso.
+</p>
+
+<pre>true</pre>
+
+</div>
+
+
+<div class="project-box">
+
+<h3>Undefined</h3>
+
+<p>
+Variável sem valor atribuído.
+</p>
+
+<pre>undefined</pre>
+
+</div>
+
+</div>
+
+
+<div class="editor">
+
+<div class="editor-head">
+
+<span class="editor-title">
+types.js
+</span>
+
+<button
+class="run"
+onclick="executarEditor(this)">
+▶ Executar
+</button>
+
+</div>
+
+
+<textarea>
+let nome = "Davi";
+
+let idade = 16;
+
+let programando = true;
+
+console.log(typeof nome);
+
+console.log(typeof idade);
+
+console.log(typeof programando);</textarea>
+
+</div>
+
+<div class="output"></div>
+
+</div>
+
+</section>
+
+
+
+<!-- =========================
+     AULA 04
+========================= -->
+
+<section class="lesson">
+
+<div class="card">
+
+<div class="tag">
+MISSÃO 04
+</div>
+
+<h2>
+Tomando decisões
+</h2>
+
+<p>
+Programas precisam tomar decisões.
+Para isso utilizamos condições.
+</p>
+
+
+<div class="editor">
+
+<div class="editor-head">
+
+<span class="editor-title">
+conditions.js
+</span>
+
+<button
+class="run"
+onclick="executarEditor(this)">
+▶ Executar
+</button>
+
+</div>
+
+
+<textarea>
+let nota = 8;
+
+if (nota >= 7) {
+
+    console.log("Aprovado!");
+
+} else {
+
+    console.log("Reprovado.");
+
+}</textarea>
+
+</div>
+
+<div class="output"></div>
+
+
+<div class="concept">
+
+A estrutura básica é:
+
+<br><br>
+
+<b>if</b> → se uma condição for verdadeira.
+
+<br>
+
+<b>else</b> → caso contrário.
+
+<br>
+
+<b>else if</b> → outra condição.
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =========================
+     AULA 05
+========================= -->
+
+<section class="lesson">
+
+<div class="card">
+
+<div class="tag">
+MISSÃO 05
+</div>
+
+<h2>
+Loops
+</h2>
+
+<p>
+Loops permitem repetir instruções automaticamente.
+</p>
+
+
+<div class="editor">
+
+<div class="editor-head">
+
+<span class="editor-title">
+loops.js
+</span>
+
+<button
+class="run"
+onclick="executarEditor(this)">
+▶ Executar
+</button>
+
+</div>
+
+
+<textarea>
+for (let i = 1; i <= 10; i++) {
+
+    console.log("Número: " + i);
+
+}</textarea>
+
+</div>
+
+<div class="output"></div>
+
+
+<h3>
+O que acontece?
+</h3>
+
+<p>
+
+O programa começa com <b>i = 1</b>.
+
+Enquanto <b>i <= 10</b>,
+o código continua executando.
+
+Depois de cada repetição:
+
+<b>i++</b>
+
+aumenta o número.
+
+</p>
+
+</div>
+
+</section>
+
+
+
+<!-- =========================
+     AULA 06
+========================= -->
+
+<section class="lesson">
+
+<div class="card">
+
+<div class="tag">
+MISSÃO 06
+</div>
+
+<h2>
+Arrays
+</h2>
+
+<p>
+Arrays permitem armazenar vários valores dentro
+de uma única estrutura.
+</p>
+
+
+<div class="editor">
+
+<div class="editor-head">
+
+<span class="editor-title">
+arrays.js
+</span>
+
+<button
+class="run"
+onclick="executarEditor(this)">
+▶ Executar
+</button>
+
+</div>
+
+
+<textarea>
+const frutas = [
+
+    "Maçã",
+    "Banana",
+    "Laranja",
+    "Uva"
+
+];
+
+console.log(frutas);
+
+console.log(frutas[0]);
+
+frutas.push("Abacaxi");
+
+console.log(frutas);</textarea>
+
+</div>
+
+<div class="output"></div>
+
+
+<div class="concept">
+
+⚠️ O primeiro índice de um array é <b>0</b>.
+
+frutas[0] → Maçã
+
+frutas[1] → Banana
+
+frutas[2] → Laranja
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =========================
+     AULA 07
+========================= -->
+
+<section class="lesson">
+
+<div class="card">
+
+<div class="tag">
+MISSÃO 07
+</div>
+
+<h2>
+Objetos
+</h2>
+
+<p>
+Objetos permitem representar informações relacionadas.
+</p>
+
+
+<div class="editor">
+
+<div class="editor-head">
+
+<span class="editor-title">
+object.js
+</span>
+
+<button
+class="run"
+onclick="executarEditor(this)">
+▶ Executar
+</button>
+
+</div>
+
+
+<textarea>
+const usuario = {
+
+    nome: "Davi",
+
+    idade: 16,
+
+    linguagem: "JavaScript",
+
+    ativo: true
+
+};
+
+console.log(usuario.nome);
+
+console.log(usuario.linguagem);</textarea>
+
+</div>
+
+<div class="output"></div>
+
+</div>
+
+</section>
+
+
+
+<!-- =========================
+     AULA 08
+========================= -->
+
+<section class="lesson">
+
+<div class="card">
+
+<div class="tag">
+MISSÃO 08
+</div>
+
+<h2>
+Funções
+</h2>
+
+<p>
+Funções permitem criar blocos de código reutilizáveis.
+</p>
+
+
+<div class="editor">
+
+<div class="editor-head">
+
+<span class="editor-title">
+functions.js
+</span>
+
+<button
+class="run"
+onclick="executarEditor(this)">
+▶ Executar
+</button>
+
+</div>
+
+
+<textarea>
+function somar(a, b) {
+
+    return a + b;
+
+}
+
+let resultado =
+    somar(10, 20);
+
+console.log(resultado);</textarea>
+
+</div>
+
+<div class="output"></div>
+
+
+<div class="concept">
+
+Função:
+
+<br><br>
+
+<b>Entrada</b> → parâmetros
+
+<br>
+
+<b>Processamento</b> → código
+
+<br>
+
+<b>Saída</b> → return
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =========================
+     AULA 09
+========================= -->
+
+<section class="lesson">
+
+<div class="card">
+
+<div class="tag">
+MISSÃO 09
+</div>
+
+<h2>
+Arrow Functions
+</h2>
+
+<div class="editor">
+
+<div class="editor-head">
+
+<span class="editor-title">
+arrow.js
+</span>
+
+<button
+class="run"
+onclick="executarEditor(this)">
+▶ Executar
+</button>
+
+</div>
+
+
+<textarea>
+const multiplicar =
+    (a, b) => a * b;
+
+console.log(
+    multiplicar(5, 4)
+);</textarea>
+
+</div>
+
+<div class="output"></div>
+
+</div>
+
+</section>
+
+
+
+<!-- =========================
+     AULA 10
+========================= -->
+
+<section class="lesson">
+
+<div class="card">
+
+<div class="tag">
+MISSÃO 10
+</div>
+
+<h2>
+DOM — Controlando a página
+</h2>
+
+<p>
+O DOM permite que JavaScript encontre e modifique
+elementos HTML.
+</p>
+
+
+<div class="concept">
+
+HTML:
+
+<br>
+
+&lt;h1 id="titulo"&gt;Olá&lt;/h1&gt;
+
+<br><br>
+
+JavaScript:
+
+<br>
+
+document.getElementById("titulo");
+
+</div>
+
+
+<button
+class="nav-button primary"
+onclick="mudarTitulo()">
+
+Alterar título da página
+
+</button>
+
+
+<h2 id="domTitulo"
+style="margin-top:20px">
+
+Título original
+
+</h2>
+
+</div>
+
+</section>
+
+
+
+<!-- =========================
+     AULA 11
+========================= -->
+
+<section class="lesson">
+
+<div class="card">
+
+<div class="tag">
+MISSÃO 11
+</div>
+
+<h2>
+Eventos
+</h2>
+
+<p>
+Eventos permitem reagir às ações do usuário.
+</p>
+
+
+<button
+class="nav-button primary"
+onclick="eventoTeste()">
+
+Clique para executar JavaScript
+
+</button>
+
+
+<div
+id="eventoResultado"
+class="output">
+
+Aguardando evento...
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =========================
+     AULA 12
+========================= -->
+
+<section class="lesson">
+
+<div class="card">
+
+<div class="tag">
+MISSÃO 12
+</div>
+
+<h2>
+Formulários
+</h2>
+
+<p>
+JavaScript consegue ler informações digitadas
+pelo usuário.
+</p>
+
+
+<input
+id="nomeUsuario"
+placeholder="Digite seu nome"
+style="
+width:100%;
+padding:14px;
+background:#05070c;
+border:1px solid #1c2938;
+color:white;
+border-radius:8px;
+margin:10px 0;
+">
+
+
+<button
+class="nav-button primary"
+onclick="lerNome()">
+
+Enviar
+
+</button>
+
+
+<div
+id="nomeResultado"
+class="output">
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =========================
+     AULA 13
+========================= -->
+
+<section class="lesson">
+
+<div class="card">
+
+<div class="tag">
+MISSÃO 13
+</div>
+
+<h2>
+LocalStorage
+</h2>
+
+<p>
+O navegador consegue armazenar pequenas quantidades
+de dados para manter informações entre sessões.
+</p>
+
+
+<div class="editor">
+
+<div class="editor-head">
+
+<span class="editor-title">
+storage.js
+</span>
+
+<button
+class="run"
+onclick="executarEditor(this)">
+▶ Executar
+</button>
+
+</div>
+
+
+<textarea>
+localStorage.setItem(
+    "usuario",
+    "Davi"
+);
+
+const nome =
+    localStorage.getItem("usuario");
+
+console.log(nome);</textarea>
+
+</div>
+
+<div class="output"></div>
+
+</div>
+
+</section>
+
+
+
+<!-- =========================
+     AULA 14
+========================= -->
+
+<section class="lesson">
+
+<div class="card">
+
+<div class="tag">
+MISSÃO 14
+</div>
+
+<h2>
+JSON
+</h2>
+
+<p>
+JSON é muito utilizado para transportar dados
+entre aplicações.
+</p>
+
+
+<div class="editor">
+
+<div class="editor-head">
+
+<span class="editor-title">
+json.js
+</span>
+
+<button
+class="run"
+onclick="executarEditor(this)">
+▶ Executar
+</button>
+
+</div>
+
+
+<textarea>
+const usuario = {
+
+    nome: "Davi",
+
+    idade: 16
+
+};
+
+const texto =
+    JSON.stringify(usuario);
+
+console.log(texto);
+
+const objeto =
+    JSON.parse(texto);
+
+console.log(objeto.nome);</textarea>
+
+</div>
+
+<div class="output"></div>
+
+</div>
+
+</section>
+
+
+
+<!-- =========================
+     AULA 15
+========================= -->
+
+<section class="lesson">
+
+<div class="card">
+
+<div class="tag">
+MISSÃO 15
+</div>
+
+<h2>
+Promises
+</h2>
+
+<p>
+Promises representam operações que podem terminar
+agora ou no futuro.
+</p>
+
+
+<div class="editor">
+
+<div class="editor-head">
+
+<span class="editor-title">
+promise.js
+</span>
+
+<button
+class="run"
+onclick="executarEditor(this)">
+▶ Executar
+</button>
+
+</div>
+
+
+<textarea>
+const promessa =
+    new Promise(resolve => {
+
+        setTimeout(() => {
+
+            resolve(
+                "Operação concluída!"
+            );
+
+        }, 1000);
+
+    });
+
+promessa.then(resultado => {
+
+    console.log(resultado);
+
+});</textarea>
+
+</div>
+
+<div class="output"></div>
+
+</div>
+
+</section>
+
+
+
+<!-- =========================
+     AULA 16
+========================= -->
+
+<section class="lesson">
+
+<div class="card">
+
+<div class="tag">
+MISSÃO 16
+</div>
+
+<h2>
+Async / Await
+</h2>
+
+<p>
+Async e Await tornam operações assíncronas
+mais fáceis de ler.
+</p>
+
+
+<div class="editor">
+
+<div class="editor-head">
+
+<span class="editor-title">
+async.js
+</span>
+
+<button
+class="run"
+onclick="executarEditor(this)">
+▶ Executar
+</button>
+
+</div>
+
+
+<textarea>
+function esperar() {
+
+    return new Promise(resolve => {
+
+        setTimeout(() => {
+
+            resolve("Terminou!");
+
+        }, 1000);
+
+    });
+
+}
+
+async function iniciar() {
+
+    console.log("Esperando...");
+
+    const resultado =
+        await esperar();
+
+    console.log(resultado);
+
+}
+
+iniciar();</textarea>
+
+</div>
+
+<div class="output"></div>
+
+</div>
+
+</section>
+
+
+
+<!-- =========================
+     AULA 17
+========================= -->
+
+<section class="lesson">
+
+<div class="card">
+
+<div class="tag">
+MISSÃO 17
+</div>
+
+<h2>
+APIs
+</h2>
+
+<p>
+APIs permitem que aplicações conversem entre si.
+</p>
+
+
+<div class="concept">
+
+Seu JavaScript:
+
+<br>
+↓
+<br>
+requisição HTTP
+
+<br>
+↓
+
+Servidor / API
+
+<br>
+↓
+
+Dados JSON
+
+<br>
+↓
+
+Seu site
+
+</div>
+
+
+<div class="editor">
+
+<div class="editor-head">
+
+<span class="editor-title">
+api.js
+</span>
+
+<button
+class="run"
+onclick="executarEditor(this)">
+▶ Executar
+</button>
+
+</div>
+
+
+<textarea>
+async function buscarUsuarios() {
+
+    const resposta =
+        await fetch(
+            "https://jsonplaceholder.typicode.com/users"
+        );
+
+    const usuarios =
+        await resposta.json();
+
+    console.log(usuarios);
+
+}
+
+buscarUsuarios();</textarea>
+
+</div>
+
+<div class="output"></div>
+
+</div>
+
+</section>
+
+
+
+<!-- =========================
+     AULA 18
+========================= -->
+
+<section class="lesson">
+
+<div class="card">
+
+<div class="tag">
+MISSÃO 18
+</div>
+
+<h2>
+Classes
+</h2>
+
+<p>
+Classes permitem criar estruturas para representar
+objetos e comportamentos.
+</p>
+
+
+<div class="editor">
+
+<div class="editor-head">
+
+<span class="editor-title">
+class.js
+</span>
+
+<button
+class="run"
+onclick="executarEditor(this)">
+▶ Executar
+</button>
+
+</div>
+
+
+<textarea>
+class Pessoa {
+
+    constructor(nome) {
+
+        this.nome = nome;
+
+    }
+
+    apresentar() {
+
+        return
+            `Olá, ${this.nome}`;
+
+    }
+
+}
+
+const pessoa =
+    new Pessoa("Davi");
+
+console.log(
+    pessoa.nome
+);</textarea>
+
+</div>
+
+<div class="output"></div>
+
+</div>
+
+</section>
+
+
+
+<!-- =========================
+     PROJETO CONTADOR
+========================= -->
+
+<section class="lesson">
+
+<div class="card">
+
+<div class="tag">
+PROJETO 01
+</div>
+
+<h2>
+Contador interativo
+</h2>
+
+<p>
+Agora vamos juntar JavaScript + DOM + eventos.
+</p>
+
+
+<div style="
+text-align:center;
+padding:30px;
+background:#070b11;
+border-radius:12px;
+">
+
+<h1
+id="contador"
+style="font-size:70px;color:#f7df1e">
+
+0
+
+</h1>
+
+
+<button
+class="nav-button"
+onclick="contadorAlterar(-1)">
+
+−
+
+</button>
+
+
+<button
+class="nav-button primary"
+onclick="contadorAlterar(1)">
+
++
+
+</button>
+
+
+<button
+class="nav-button"
+onclick="contadorResetar()">
+
+Reset
+
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<!-- =========================
+     PROJETO FINAL
+========================= -->
+
+<section class="lesson">
+
+<div class="card">
+
+<div class="tag">
+PROJETO FINAL
+</div>
+
+<h2>
+Construindo um mini sistema
+</h2>
+
+<p>
+Você chegou ao projeto final.
+Agora vamos combinar vários conceitos.
+</p>
+
+
+<div class="project">
+
+<div class="project-box">
+
+<h3>Variáveis</h3>
+
+<p>
+Guardar informações.
+</p>
+
+</div>
+
+<div class="project-box">
+
+<h3>Funções</h3>
+
+<p>
+Organizar comportamentos.
+</p>
+
+</div>
+
+<div class="project-box">
+
+<h3>DOM</h3>
+
+<p>
+Alterar a interface.
+</p>
+
+</div>
+
+<div class="project-box">
+
+<h3>Eventos</h3>
+
+<p>
+Responder ao usuário.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="concept">
+
+🔥 Você agora já conhece os principais fundamentos
+necessários para começar a construir aplicações
+JavaScript reais.
+
+<br><br>
+
+O próximo passo é praticar.
+
+Não tente decorar tudo.
+
+Escreva código.
+
+Quebre o código.
+
+Leia o erro.
+
+Corrija.
+
+E tente novamente.
+
+</div>
+
+</div>
+
+</section>
+
+
+
+<div class="navigation">
+
+<button
+class="nav-button"
+onclick="anterior()">
+
+← Anterior
+
+</button>
+
+
+<button
+class="nav-button primary"
+onclick="proxima()">
+
+Próxima →
+
+</button>
+
+</div>
+
+
+</main>
+
+</div>
+
+
+
+<script>
+
+/* ==========================================
+   SISTEMA DO CURSO
+========================================== */
+
+let aulaAtual = 0;
+
+let xp = Number(
+    localStorage.getItem("js_xp")
+) || 0;
+
+let completadas =
+    JSON.parse(
+        localStorage.getItem("js_aulas")
+    ) || [];
+
+
+const aulas =
+    document.querySelectorAll(".lesson");
+
+const botoes =
+    document.querySelectorAll(".lesson-btn");
+
+
+/* ==========================================
+   ABRIR AULA
+========================================== */
+
+function abrirAula(numero){
+
+    if(numero < 0)
+        numero = 0;
+
+    if(numero >= aulas.length)
+        numero = aulas.length - 1;
+
+    aulaAtual = numero;
+
+    aulas.forEach(
+        aula =>
+            aula.classList.remove("active")
+    );
+
+    botoes.forEach(
+        botao =>
+            botao.classList.remove("active")
+    );
+
+    aulas[numero]
+        .classList.add("active");
+
+    if(botoes[numero]){
+
+        botoes[numero]
+            .classList.add("active");
+
+    }
+
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
+    });
+
+    if(window.innerWidth < 850){
+
+        document
+            .getElementById("sidebar")
+            .classList.remove("open");
+
+    }
+
+}
+
+
+/* ==========================================
+   PRÓXIMA
+========================================== */
+
+function proxima(){
+
+    if(aulaAtual <
+        aulas.length - 1){
+
+        concluirAula();
+
+        abrirAula(
+            aulaAtual + 1
+        );
+
+    }
+
+}
+
+
+/* ==========================================
+   ANTERIOR
+========================================== */
+
+function anterior(){
+
+    if(aulaAtual > 0){
+
+        abrirAula(
+            aulaAtual - 1
+        );
+
+    }
+
+}
+
+
+/* ==========================================
+   CONCLUIR AULA
+========================================== */
+
+function concluirAula(){
+
+    if(
+        !completadas.includes(aulaAtual)
+    ){
+
+        completadas.push(aulaAtual);
+
+        xp += 100;
+
+        salvar();
+
+        atualizarInterface();
+
+    }
+
+}
+
+
+/* ==========================================
+   SALVAR
+========================================== */
+
+function salvar(){
+
+    localStorage.setItem(
+        "js_xp",
+        xp
+    );
+
+    localStorage.setItem(
+        "js_aulas",
+        JSON.stringify(
+            completadas
+        )
+    );
+
+}
+
+
+/* ==========================================
+   INTERFACE
+========================================== */
+
+function atualizarInterface(){
+
+    const nivel =
+        Math.floor(xp / 500) + 1;
+
+    document
+        .getElementById("xp")
+        .textContent = xp;
+
+    document
+        .getElementById("xpText")
+        .textContent =
+        xp + " XP";
+
+    document
+        .getElementById("level")
+        .textContent =
+        nivel;
+
+    document
+        .getElementById("completed")
+        .textContent =
+        completadas.length;
+
+
+    const progresso =
+        Math.min(
+            (xp % 500) / 500 * 100,
+            100
+        );
+
+    document
+        .getElementById("xpBar")
+        .style.width =
+        progresso + "%";
+
+}
+
+
+atualizarInterface();
+
+
+/* ==========================================
+   EXECUTAR EDITOR
+========================================== */
+
+function executarEditor(botao){
+
+    const editor =
+        botao
+        .closest(".editor");
+
+    const textarea =
+        editor.querySelector(
+            "textarea"
+        );
+
+    const output =
+        editor
+        .parentElement
+        .querySelector(
+            ".output"
+        );
+
+    executarCodigo(
+        textarea.value,
+        output
+    );
+
+}
+
+
+/* ==========================================
+   MOTOR DO CONSOLE
+========================================== */
+
+function executarCodigo(
+    codigo,
+    output
+){
+
+    output.textContent =
+        "Executando...\n";
+
+    const logs = [];
+
+    const consoleOriginal =
+        window.console.log;
+
+    const consoleTemp = {
+
+        log(...args){
+
+            logs.push(
+                args
+                .map(valor =>
+                    typeof valor === "object"
+                        ? JSON.stringify(
+                            valor,
+                            null,
+                            2
+                        )
+                        : String(valor)
+                )
+                .join(" ")
+            );
+
+        },
+
+        warn(...args){
+
+            logs.push(
+                "⚠ " +
+                args.join(" ")
+            );
+
+        },
+
+        error(...args){
+
+            logs.push(
+                "✖ " +
+                args.join(" ")
+            );
+
+        }
+
+    };
+
+
+    try{
+
+        const funcao =
+            new Function(
+                "console",
+                codigo
+            );
+
+        funcao(
+            consoleTemp
+        );
+
+        setTimeout(() => {
+
+            output.textContent =
+                logs.length
+                    ? logs.join("\n")
+                    : "✓ Código executado sem saída.";
+
+        }, 1100);
+
+    }
+
+    catch(erro){
+
+        output.textContent =
+            "✖ ERRO\n\n" +
+            erro.message;
+
+    }
+
+}
+
+
+/* ==========================================
+   DESAFIOS
+========================================== */
+
+function desafio(numero){
+
+    if(numero === 1){
+
+        const resposta =
+            document
+            .getElementById(
+                "answer1"
+            )
+            .value
+            .trim();
+
+        const feedback =
+            document
+            .getElementById(
+                "feedback1"
+            );
+
+        if(resposta === "15"){
+
+            feedback.textContent =
+                "✓ Correto! +100 XP";
+
+            feedback.style.color =
+                "var(--green)";
+
+            if(
+                !completadas.includes(0)
+            ){
+
+                xp += 100;
+
+                salvar();
+
+                atualizarInterface();
+
+            }
+
+        }else{
+
+            feedback.textContent =
+                "✖ Ainda não. Tente novamente.";
+
+            feedback.style.color =
+                "var(--red)";
+
+        }
+
+    }
+
+}
+
+
+/* ==========================================
+   DOM
+========================================== */
+
+function mudarTitulo(){
+
+    const titulo =
+        document
+        .getElementById(
+            "domTitulo"
+        );
+
+    titulo.textContent =
+        "JavaScript acabou de alterar o DOM!";
+
+}
+
+
+/* ==========================================
+   EVENTOS
+========================================== */
+
+function eventoTeste(){
+
+    document
+        .getElementById(
+            "eventoResultado"
+        )
+        .textContent =
+        "✓ Evento detectado! JavaScript respondeu ao clique.";
+
+}
+
+
+/* ==========================================
+   FORMULÁRIO
+========================================== */
+
+function lerNome(){
+
+    const input =
+        document
+        .getElementById(
+            "nomeUsuario"
+        );
+
+    const resultado =
+        document
+        .getElementById(
+            "nomeResultado"
+        );
+
+    const nome =
+        input.value.trim();
+
+    if(!nome){
+
+        resultado.textContent =
+            "Digite um nome.";
+
+        return;
+
+    }
+
+    resultado.textContent =
+        "Olá, " +
+        nome +
+        "! Você acabou de usar JavaScript para manipular um formulário.";
+
+}
+
+
+/* ==========================================
+   CONTADOR
+========================================== */
+
+let valorContador = 0;
+
+function contadorAlterar(valor){
+
+    valorContador += valor;
+
+    document
+        .getElementById(
+            "contador"
+        )
+        .textContent =
+        valorContador;
+
+}
+
+function contadorResetar(){
+
+    valorContador = 0;
+
+    document
+        .getElementById(
+            "contador"
+        )
+        .textContent =
+        valorContador;
+
+}
+
+
+/* ==========================================
+   ATALHOS
+========================================== */
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        if(
+            event.key === "ArrowRight"
+        ){
+
+            proxima();
+
+        }
+
+        if(
+            event.key === "ArrowLeft"
+        ){
+
+            anterior();
+
+        }
+
+    }
+);
+
+
+/* ==========================================
+   MENU MOBILE
+========================================== */
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        if(
+            event.key === "Escape"
+        ){
+
+            document
+                .getElementById(
+                    "sidebar"
+                )
+                .classList.remove(
+                    "open"
+                );
+
+        }
+
+    }
+);
+
+</script>
+
+</body>
+</html>
+```
