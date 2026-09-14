@@ -1,6 +1,3 @@
-let dado = '42'; // tipo String
-console.log(dado);
-console.log (typeof dado);
-dado = 42;      //agora é number
-console.log(dado);
-console.log(typeof dado);
+const nome = 'maria'
+const msg = `olá, ${nome} , Bem vinda! `
+console.log(msg)
