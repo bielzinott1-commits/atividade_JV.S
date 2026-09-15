@@ -1,0 +1,1 @@
+const dobro = n => n * 2;
