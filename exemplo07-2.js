@@ -1,6 +1,7 @@
-let nota = 85;
+const nota = 85;
+let analisar_nota=true
 
-switch (nota) {
+switch (analisar_nota) {
   case nota >= 90:
     console.log('Conceito A');
     break;
@@ -8,5 +9,5 @@ switch (nota) {
     console.log('Conceito B');
     break;
   default:
-    console.log("Melhore!.");
+    console.log('Melhore!.');
 }
