@@ -1,6 +1,6 @@
 let nota = 85;
 
-switch (dia) {
+switch (nota) {
   case nota >= 90:
     console.log('Conceito A');
     break;
