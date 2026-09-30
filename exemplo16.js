@@ -1,4 +1,3 @@
-function teste() {
-    const interna = 'segredo';
-  }
-  console.log(interna); // Erro: interna is not defined
+const dobro = n => n * 2;
+
+console.log(dobro (6));

@@ -1,3 +1,3 @@
-setTimeout(() => {
-    console.log('Passou 1 segundo');
-  }, 1000);
+const gerarId = () => {
+    return `id_${Date.now()}_${Math.random()}`;
+  };

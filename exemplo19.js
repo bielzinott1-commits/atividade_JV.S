@@ -1,3 +1,3 @@
-function saudacao(nome = 'Visitante') {
-    console.log(`Olá, ${nome}`);
-  }
+setTimeout(() => {
+    console.log('Passou 1 segundo');
+  }, 1000);

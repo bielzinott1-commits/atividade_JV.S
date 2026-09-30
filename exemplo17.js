@@ -1,3 +1,4 @@
-const gerarId = () => {
-    return `id_${Date.now()}_${Math.random()}`;
-  };
+function teste() {
+    const interna = 'segredo';
+  }
+  console.log(interna); // Erro: interna is not defined
