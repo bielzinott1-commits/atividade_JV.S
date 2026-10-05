@@ -8,4 +8,4 @@ const procurarNome = (nomes, nomeBuscado) => {
     return false;
 };
 
-console.log(procurarNome(["Davi", "João", "Maria"], "Davi"));
+console.log(procurarNome(["Davi", "Caio", "Portugal","Douglas"], "Davi"));
