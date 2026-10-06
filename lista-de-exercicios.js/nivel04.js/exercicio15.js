@@ -5,6 +5,3 @@ const testarEscopo = () => {
 };
 
 console.log(testarEscopo());
-
-// Isso dará erro:
-console.log(segredo);
