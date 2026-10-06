@@ -2,7 +2,7 @@ const calcularTotal = (precos) => {
     let total = 0;
 
     for (const preco of precos) {
-        total += preco;
+        total = total +  preco;
     }
 
     return total;
