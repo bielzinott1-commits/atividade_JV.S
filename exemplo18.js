@@ -1,3 +1,5 @@
-const gerarId = () => {
-    return `id_${Date.now()}_${Math.random()}`;
-  };
+const pessoa = { nome: 'Ana', idade: 20 };
+
+for (const chave in pessoa) {
+  console.log(chave, ':', pessoa[chave]);
+}

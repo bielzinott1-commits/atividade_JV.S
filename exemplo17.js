@@ -1,4 +1,5 @@
-function teste() {
-    const interna = 'segredo';
-  }
-  console.log(interna); // Erro: interna is not defined
+const nomes = ['Ana', 'Beto', 'Carla'];
+
+for (const nome of nomes) {
+  console.log(nome);
+}

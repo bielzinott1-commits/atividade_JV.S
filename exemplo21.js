@@ -1,5 +1,7 @@
-// No utils.js
-export const dobro = n => n * 2;
+const aluno = { nome: 'Lucas', idade: 20 };
 
-// No main.js
-import { dobro } from './utils.js';
+// Extrai 'nome' e 'idade' diretamente do objeto
+const { nome, idade } = aluno;
+
+console.log(nome);  // 'Lucas'
+console.log(idade); // 20
