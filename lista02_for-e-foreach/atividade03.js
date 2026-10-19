@@ -1,0 +1,23 @@
+const elementosFake = [
+    {
+        tagName: 'DIV',
+        style: { color: 'blue', display: 'flex' },
+        classList: ['container', 'active']
+    },
+    {
+        tagName: 'H1',
+        style: { color: 'red', display: 'block' },
+        classList: ['title']
+    },
+    {
+        tagName: 'BUTTON',
+        style: { color: 'white', display: 'inline-block' },
+        classList: ['btn', 'btn-primary']
+    }
+];
+
+console.log('--- ATIVIDADE 3 ---');
+
+elementosFake.forEach(function(elemento) {
+    console.log(`Nome da tag: ${elemento.tagName}`);
+});
